@@ -12,6 +12,20 @@ namespace ServiceReservasi
     public interface IService1
     {
         [OperationContract]
+        string GetData(int value);
+
+
+        [OperationContract]
+        string Login(string username, string password);
+        [OperationContract]
+        string Register(string username, string password, string kategori);
+        [OperationContract]
+        string UpdateRegister(string username, string password, string ketegori, int id);
+        [OperationContract]
+        string DeleteRegister(string username);
+        List<DataRegister> DataRegist();
+
+        [OperationContract]
         string pemesanan(string IDPemesanan, string NamaCustomer, string NoTelpon, int JumlahPemesanan, string IDLokasi);
         [OperationContract]
         string editPemesanan(string IDPemesanan, string NamaCustomer, string NoTelpon);
@@ -25,6 +39,19 @@ namespace ServiceReservasi
         List<Pemesanan> Pemesanan();
 
         // TODO: Add your service operations here
+    }
+
+    [DataContract]
+    public class DataRegister
+    {
+        [DataMember(Order = 1)]
+        public int id { get; set; }
+        [DataMember(Order = 2)]
+        public string username { get; set; }
+        [DataMember(Order = 3)]
+        public string password { get; set; }
+        [DataMember(Order = 4)]
+        public string kategori { get; set; }
     }
 
     [DataContract]
